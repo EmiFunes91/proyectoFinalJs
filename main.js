@@ -117,7 +117,22 @@ const pintarFooter = () => {
     const btnVaciar = document.getElementById('vaciar-carrito')
     btnVaciar.addEventListener('click', () => {
         carrito = {}
-        pintarCarrito()
+
+        swal({
+            title: "Vaciar Carro",
+            text: "Está seguro que desea eliminar su carrito?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("Su carrito ha sido eliminado!", {
+                        icon: "success",
+                    });
+                }
+                pintarCarrito()
+            });
     })
 }
 
